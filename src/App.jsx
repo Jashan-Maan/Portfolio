@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <main className="h-full w-full bg-[#333] font-[intern] ">
+    <main className="h-full w-full bg-black text-white font-[intern] ">
       <Navbar />
       <section id="Hero" className="w-full h-screen px-16">
         <Circular />
