@@ -24,7 +24,7 @@ const Home = () => {
       </div>
       <div className=" w-full flex flex-col items-center justify-center">
         <button className="mt-8 shadow bg-blue-600 px-6 py-2 rounded-full text-lg font-semibold text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 hover:scale-95 transition-all duration-100 cursor-pointer">
-          <a href="#contact">Contact Me</a>
+          <a href="#Contacts">Contact Me</a>
         </button>
       </div>
     </section>

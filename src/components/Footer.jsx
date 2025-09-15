@@ -21,7 +21,7 @@ const Footer = () => {
             <FaGithub />
           </a>
           <a
-            href="mailto:sample420@gmail.com"
+            href="mailto:jashanmaan521@gmail.com"
             className="text-xl opacity-75 hover:opacity-100
             hover:scale-110 transition"
           >

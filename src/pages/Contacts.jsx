@@ -29,7 +29,7 @@ const Contacts = () => {
       draggable: true,
       progress: undefined,
       theme: "colored",
-      transition: { Bounce },
+      transition: Bounce,
     });
   };
 
@@ -38,6 +38,7 @@ const Contacts = () => {
       id="Contacts"
       className="h-[80vh] w-full px-16 flex flex-col items-center justify-center gap-4 mt-20 text-white"
     >
+      <ToastContainer />
       <div className="w-full flex flex-col items-start justify-center gap-4">
         <h1 className="text-4xl font-semibold">Get in Touch</h1>
         <p className="text-base text-gray-100">
@@ -50,10 +51,11 @@ const Contacts = () => {
           <form
             onSubmit={handleSubmit}
             className=" w-full flex flex-col h-full items-start justify-center gap-4"
-            action=""
           >
             <input
+              name="name"
               required
+              autoComplete="on"
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
@@ -63,7 +65,9 @@ const Contacts = () => {
               placeholder="Name"
             />
             <input
+              name="email"
               required
+              autoComplete="on"
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -72,12 +76,10 @@ const Contacts = () => {
               type="email"
               placeholder="Email"
             />
-            <div
-              required
-              className="w-full flex flex-col items-start justify-center gap-1.5 h-2/5"
-            >
+            <div className="w-full flex flex-col items-start justify-center gap-1.5 h-2/5">
               <label htmlFor="Message">Message</label>
               <textarea
+                name="message"
                 required
                 value={formData.message}
                 onChange={(e) =>
@@ -89,25 +91,11 @@ const Contacts = () => {
               />
             </div>
             <button
-              onClick={handleSubmit}
               type="submit"
               className="bg-gray-200 text-black py-1.5 px-4 rounded font-medium hover:bg-gray-100 transition-all duration-300 cursor-pointer"
             >
               Send Message
             </button>
-            <ToastContainer
-              position="bottom-left"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick={false}
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="colored"
-              transition={Bounce}
-            />
           </form>
         </div>
         <div className="h-11/12 border-r-2 border-gray-200"></div>
@@ -145,7 +133,7 @@ const Contacts = () => {
               target="_blank"
               rel="noreferrer"
             >
-              sample420@gmail.com
+              jashanmaan521@gmail.com
             </a>
           </p>
         </div>
