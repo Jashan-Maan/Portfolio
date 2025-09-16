@@ -1,9 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Cards from "../components/Cards";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -69,61 +65,27 @@ const projects = [
 ];
 
 const Projects = () => {
-  const scrollContainerRef = useRef(null);
-
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (!scrollContainer) return;
-
-    const totalScrollWidth =
-      scrollContainer.scrollWidth - scrollContainer.clientWidth;
-    const tl = gsap.timeline({
-      repeat: -1,
-      defaults: { ease: "none" },
-    });
-
-    tl.to(scrollContainer, {
-      scrollLeft: totalScrollWidth,
-      duration: 10,
-    });
-
-    const handleMouseEnter = () => tl.pause();
-    const handleMouseLeave = () => tl.resume();
-
-    scrollContainer.addEventListener("mouseenter", handleMouseEnter);
-    scrollContainer.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      tl.kill();
-      scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
-      scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
   return (
     <section
       id="Projects"
-      className="w-full h-screen mt-12 px-16 flex flex-col items-center justify-center gap-7"
+      // Add scroll-mt-20 here to offset for the sticky navbar
+      // I also cleaned up the redundant px-20 class for you
+      className="w-full min-h-screen scroll-mt-20 px-6 sm:px-10 lg:px-16 flex flex-col items-center justify-center"
     >
-      <h2 className="text-4xl font-bold italic text-amber-200">Projects</h2>
-      <div
-        ref={scrollContainerRef}
-        id="scroll-bar"
-        className="flex h-3/5 justify-start w-full gap-6  items-center overflow-auto px-2 py-4 scroll-auto"
-      >
-        {projects.map(
-          ({ id, title, description, image, link, github, tags }) => (
-            <Cards
-              key={id}
-              title={title}
-              description={description}
-              src={image}
-              link={link}
-              github={github}
-              tag={tags}
-            />
-          )
-        )}
+      <h2 className="text-4xl sm:text-5xl font-bold text-amber-200 mb-12 text-center drop-shadow-md">
+        Projects
+      </h2>
+      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map(({ id, title, image, link, github, tags }) => (
+          <Cards
+            key={id}
+            title={title}
+            src={image}
+            link={link}
+            github={github}
+            tag={tags}
+          />
+        ))}
       </div>
     </section>
   );

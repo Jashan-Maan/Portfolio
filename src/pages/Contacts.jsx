@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { HiOutlineMail } from "react-icons/hi";
 
 const Contacts = () => {
   const [formData, setFormData] = useState({
@@ -8,134 +12,129 @@ const Contacts = () => {
     message: "",
   });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log("Form submitted:", formData);
+
+    toast.success("Message Sent Successfully!");
     setFormData({
       name: "",
       email: "",
       message: "",
-    });
-    notify();
-  };
-
-  const notify = () => {
-    toast.success("Message Sent Successfully", {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
     });
   };
 
   return (
     <section
       id="Contacts"
-      className="h-[80vh] w-full px-16 flex flex-col items-center justify-center gap-4 mt-20 text-white"
+      className="w-full min-h-10/12 flex flex-col items-center justify-center py-20 px-6 sm:px-10 lg:px-16 text-white "
     >
-      <ToastContainer />
-      <div className="w-full flex flex-col items-start justify-center gap-4">
-        <h1 className="text-4xl font-semibold">Get in Touch</h1>
-        <p className="text-base text-gray-100">
-          I'm always open to new opportunities and collaborations, Feel free to
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
+      <div className="w-full max-w-6xl text-center lg:text-left mb-12">
+        <h1 className="text-4xl sm:text-5xl font-bold text-amber-200 drop-shadow-md">
+          Get in Touch
+        </h1>
+        <p className="text-lg text-gray-300 mt-4">
+          I'm always open to new opportunities and collaborations. Feel free to
           reach out!
         </p>
       </div>
-      <div className="w-full flex items-center justify-start mt-10">
-        <div className="w-1/2 h-full p-2">
-          <form
-            onSubmit={handleSubmit}
-            className=" w-full flex flex-col h-full items-start justify-center gap-4"
-          >
+
+      <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-12 lg:gap-8">
+        <div className="w-full lg:w-1/2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <input
-              name="name"
-              required
-              autoComplete="on"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-              className=" outline-1 w-11/12 outline-gray-100 border-[1] border-gray-100 rounded py-0.5 px-3"
               type="text"
-              placeholder="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your Name"
+              required
+              className="w-full bg-slate-800 border border-slate-700 rounded-md p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400"
             />
             <input
-              name="email"
-              required
-              autoComplete="on"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              className="outline-1 outline-gray-100 border-[1] w-11/12 border-gray-100 rounded py-0.5 px-3"
               type="email"
-              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email"
+              required
+              className="w-full bg-slate-800 border border-slate-700 rounded-md p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400"
             />
-            <div className="w-full flex flex-col items-start justify-center gap-1.5 h-2/5">
-              <label htmlFor="Message">Message</label>
-              <textarea
-                name="message"
-                required
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-                id="Message"
-                className="outline-1 outline-gray-100 border-[1] w-11/12 h-full resize-none border-gray-100 rounded py-0.5 px-3"
-                placeholder="Message"
-              />
-            </div>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Your Message"
+              required
+              rows="5"
+              className="w-full bg-slate-800 border border-slate-700 rounded-md p-3 text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-amber-400"
+            />
             <button
               type="submit"
-              className="bg-gray-200 text-black py-1.5 px-4 rounded font-medium hover:bg-gray-100 transition-all duration-300 cursor-pointer"
+              className="mt-4 shadow-lg transform transition-all duration-300 bg-blue-600 px-7 py-3 rounded-full text-lg font-semibold text-white hover:bg-blue-700 hover:scale-105 hover:shadow-blue-500/50 self-start"
             >
               Send Message
             </button>
           </form>
         </div>
-        <div className="h-11/12 border-r-2 border-gray-200"></div>
-        <div className="py-2 px-10 w-2/5 h-full flex flex-col items-start justify-center gap-4">
+
+        <div className="w-full lg:w-1/2 flex flex-col gap-4">
+          <h3 className="text-2xl font-bold mb-2">Find me on</h3>
           <a
-            className=" h-full flex items-center justify-start gap-2 hover:scale-105 transition-all duration-100 cursor-pointer"
             href="https://www.linkedin.com/in/jashan-maan/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-3 rounded-md transition-colors duration-300 hover:bg-slate-800"
           >
-            <img className="h-8" src="./LinkedIn.svg" alt="LinkedIn" />
-            <span className="text-lg tracking-wide font-medium">linkedin</span>
+            <FaLinkedin className="text-4xl text-blue-500" />
+            <span className="text-lg">LinkedIn</span>
           </a>
           <a
-            className=" h-full flex items-center justify-start gap-2 hover:scale-105 transition-all duration-100 cursor-pointer"
-            href="https://www.linkedin.com/in/jashan-maan/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img className="h-8" src="./X.svg" alt="X" />
-            <span className="text-lg tracking-wide font-medium">X</span>
-          </a>
-          <a
-            className="h-full flex items-center justify-start gap-2 hover:scale-105 transition-all duration-100 cursor-pointer"
             href="https://github.com/Jashan-Maan"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-3 rounded-md transition-colors duration-300 hover:bg-slate-800"
           >
-            <img className="h-8" src="./Github-Dark.svg" alt="github" />
-            <span className="text-lg tracking-wide font-medium">GitHub</span>
+            <FaGithub className="text-4xl" />
+            <span className="text-lg">GitHub</span>
           </a>
-          <p className="w-full h-full flex items-center justify-start text-base tracking-wide font-medium text-blue-400 hover:scale-105 transition-all duration-300 cursor-pointer">
-            <a
-              href="https://github.com/Jashan-Maan"
-              target="_blank"
-              rel="noreferrer"
-            >
-              jashanmaan521@gmail.com
-            </a>
-          </p>
+          <a
+            href="https://twitter.com/your-profile"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-3 rounded-md transition-colors duration-300 hover:bg-slate-800"
+          >
+            <FaXTwitter className="text-4xl" />
+            <span className="text-lg">Twitter / X</span>
+          </a>
+          <a
+            href="mailto:jashanmaan521@gmail.com"
+            className="flex items-center gap-4 p-3 rounded-md transition-colors duration-300 hover:bg-slate-800"
+          >
+            <HiOutlineMail className="text-4xl text-amber-300" />
+            <span className="text-lg">jashanmaan521@gmail.com</span>
+          </a>
         </div>
       </div>
     </section>
