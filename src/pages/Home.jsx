@@ -7,7 +7,7 @@ const Home = () => {
       id="Home"
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <div className="absolute -top-12 left-0 w-full h-full z-0">
+      <div className="absolute -top-12 left-0 w-full h-full z-11">
         <Circular />
       </div>
       <div className="absolute top-30 left-0 w-full h-full z-10 flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:justify-between px-6 sm:px-10 lg:px-16">
